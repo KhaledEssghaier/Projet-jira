@@ -25,7 +25,7 @@ export default function LoginPage() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh]">
-      <h1 className="text-2xl font-bold mb-4">Connexion Étudiant</h1>
+      <h1 className="text-2xl font-bold mb-4"><strong>Connexion Étudiant</strong></h1>
       <form onSubmit={handleSubmit} className="bg-white p-8 rounded shadow w-full max-w-sm flex flex-col gap-4">
         <input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required className="border p-2 rounded" />
         <input type="password" placeholder="Mot de passe" value={password} onChange={e => setPassword(e.target.value)} required className="border p-2 rounded" />
