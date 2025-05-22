@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    container_name: fastapi-app
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/
+      - MONGO_DB=books_db
+      - OPENAI_API_KEY=your_openai_api_key
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:6.0
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+volumes:
+  mongo_data:

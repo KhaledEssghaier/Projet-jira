@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  web:
+    build: .
+    container_name: fastapi-app
+    ports:
+      - "8000:8000"
+    environment:
+      - POSTGRES_URL=postgresql://postgres:postgres@db:5432/books_db
+      - MONGO_URL=mongodb://mongo:27017/
+      - MONGO_DB=books_db
+      - OPENAI_API_KEY=your_openai_api_key
+    depends_on:
+      - db
+      - mongo
+  db:
+    image: postgres:15
+    container_name: db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: books_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+  mongo:
+    image: mongo:6.0
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+volumes:
+  pg_data:
+  mongo_data:
